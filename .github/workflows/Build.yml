@@ -12,12 +12,13 @@ jobs:
     runs-on: windows-2019
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: true
     - name: Read Metadata
       uses: antifree/json-to-variables@v1.0.1
       with:
         filename: 'metadata.json'
         prefix: metadata
-    - run: git submodule init && git submodule update
     - run: npm install
     - run: npm run buildpug production && npm run buildsource
     - uses: actions/upload-artifact@v2
