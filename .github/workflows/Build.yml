@@ -17,9 +17,9 @@ jobs:
       with:
         filename: 'metadata.json'
         prefix: metadata
+    - run: git submodules init && git submodules update
     - run: npm install
-    - run: npm run buildpug production
-    - run: npm run buildsource
+    - run: npm run buildpug production && npm run buildsource
     - uses: actions/upload-artifact@v2
       with:
         name: ${{ env.metadata_default_name }}
